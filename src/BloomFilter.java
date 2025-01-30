@@ -3,6 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class BloomFilter {
@@ -38,8 +39,7 @@ public abstract class BloomFilter {
             String entry = s.contains(" ") ? s.split(" ", 2)[1] : null;
 
             switch (action) {
-                case "add", "a" -> add(entry);
-                case "test", "t" -> test(entry);
+                case "add", "a", "test", "t" -> selectAction(action, entry);
                 case "back", "b" -> {
                     System.out.println("Select 'simple', 'evolved' or 'exit'");
                     isRunning = false;
@@ -48,6 +48,20 @@ public abstract class BloomFilter {
 
                 default -> System.out.printf("Unrecognized action : %s\n", action);
             }
+        }
+    }
+
+    private void selectAction(String action, String entry) {
+        if (Objects.isNull(entry)) {
+            System.out.printf("Action '%s' need an input.\n", action);
+            return;
+        }
+
+        switch (action) {
+            case "add", "a" -> add(entry);
+            case "test", "t" -> test(entry);
+
+            default -> System.out.printf("Unrecognized action : %s\n", action);
         }
     }
 
