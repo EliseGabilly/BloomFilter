@@ -10,7 +10,9 @@ public class Main {
         System.out.println("""
                 Welcome to BloomFilter !
                     to use the simple filter input : "simple" / "s"
+                    to use the simple filter input with default input : "sd"
                     to use the evolved filter input : "evolved" / "e"
+                    to use the evolved filter input with default input  : "ed"
                     to exit input : "exit"
                 """);
 
@@ -27,9 +29,17 @@ public class Main {
                     SimpleBloomFilter simpleBloomFilter = new SimpleBloomFilter(SIZE, HASH_ALGORITHM);
                     simpleBloomFilter.askInput();
                 }
+                case "sd" -> {
+                    SimpleBloomFilter simpleBloomFilter = new SimpleBloomFilter(SIZE, HASH_ALGORITHM);
+                    simpleBloomFilter.defaultInput();
+                }
                 case "evolved", "e" -> {
                     EvolvedBloomFilter evolvedBloomFilter = new EvolvedBloomFilter(SIZE, HASH_ALGORITHM);
                     evolvedBloomFilter.askInput();
+                }
+                case "ed" -> {
+                    EvolvedBloomFilter evolvedBloomFilter = new EvolvedBloomFilter(SIZE, HASH_ALGORITHM);
+                    evolvedBloomFilter.defaultInput();
                 }
                 case "exit" -> isRunning = false;
 

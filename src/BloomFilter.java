@@ -11,6 +11,9 @@ public abstract class BloomFilter {
     protected final int size;
     protected final List<String> hashAlgorithm;
 
+    private final List<String> ADD_INPUT = List.of("one", "two", "three", "four");
+    private final List<String> TEST_INPUT = List.of("three", "four", "five");
+
     BloomFilter(
             final int size,
             final List<String> hashAlgorithm
@@ -63,6 +66,12 @@ public abstract class BloomFilter {
 
             default -> System.out.printf("Unrecognized action : %s\n", action);
         }
+    }
+
+    public void defaultInput() {
+        ADD_INPUT.forEach(this::add);
+        TEST_INPUT.forEach(this::test);
+        System.out.println("Select 'simple', 'evolved' or 'exit'");
     }
 
     protected abstract void add(String entry);

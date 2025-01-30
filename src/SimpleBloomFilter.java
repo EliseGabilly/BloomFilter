@@ -17,7 +17,7 @@ public class SimpleBloomFilter extends BloomFilter {
 
     @Override
     protected void add(String entry) {
-        System.out.print("   added keys :");
+        System.out.printf("   Index for '%s' : ", entry);
         for(String algo: hashAlgorithm) {
             int key = hash(entry, algo);
             table.set(key, true);

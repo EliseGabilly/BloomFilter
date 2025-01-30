@@ -20,7 +20,7 @@ public class EvolvedBloomFilter extends BloomFilter {
 
     @Override
     protected void add(String entry) {
-        System.out.printf("   Index %s : ", entry);
+        System.out.printf("   Index for '%s' : ", entry);
         for(String algo: hashAlgorithm) {
             int key = hash(entry, algo);
             table[key].add(entry);
